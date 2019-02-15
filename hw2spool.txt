@@ -1,0 +1,1023 @@
+SQL> CREATE TABLE titles(
+  2  	emp_no numeric(6,0)
+  3  	title character varying(50)
+  4  	from_date date
+  5  	to_date date
+  6  );
+	title character varying(50)
+	*
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE titles(
+  2  	emp_no numeric(60)
+  3  	title character varying(50)
+  4  	from_date date
+  5  	to_date date
+  6  );
+	emp_no numeric(60)
+	               *
+ERROR at line 2:
+ORA-01727: numeric precision specifier is out of range (1 to 38) 
+
+
+SQL> CREATE TABLE titles(
+  2  	emp_no numeric(6,0),
+  3  	title character varying(50),
+  4  	from_date date,
+  5  	to_date date,
+  6  );
+)
+*
+ERROR at line 6:
+ORA-00904: : invalid identifier 
+
+
+SQL> CREATE TABLE titles(
+  2  	emp_no numeric(6,0),
+  3  	title character varying(50),
+  4  	from_date date,
+  5  	to_date date,
+  6  );
+)
+*
+ERROR at line 6:
+ORA-00904: : invalid identifier 
+
+
+SQL> CREATE TABLE titles(
+  2  	emp_no numeric(6,0),
+  3  	title character varying(50),
+  4  	from_date date,
+  5  	to_date date);
+
+Table created.
+
+SQL> alter table titles add primary key (emp_no);
+
+Table altered.
+
+SQL> alter table titles add primary key (emp_no);
+alter table titles add primary key (emp_no)
+                       *
+ERROR at line 1:
+ORA-02260: table can have only one primary key 
+
+
+SQL> alter table titles add primary key (emp_no);alter table titles add key (emp_no);
+alter table titles add primary key (emp_no);alter table titles add key (emp_no)
+                                           *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+TITLES                                                                          
+TABLE                                                                           
+                                                                                
+
+SQL> drop table titles purge;
+
+Table dropped.
+
+SQL> CREATE TABLE titles(
+  2  	emp_no numeric(6,0),
+  3  	title character varying(50),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key (emp_no,title,from_date));
+
+Table created.
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+TITLES                                                                          
+TABLE                                                                           
+                                                                                
+
+SQL> CREATE TABLE salaries(
+  2  	emp_no numberic(6,0),
+  3  	salary numeric(6,0),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key (emp_no,from_date)
+  7  	);
+	emp_no numberic(6,0),
+	               *
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE salaries(
+  2  	emp_no numeric(6,0),
+  3  	salary numeric(6,0),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key (emp_no,from_date)
+  7  	);
+
+Table created.
+
+SQL> exit
+
+SQL> CREATE TABLE dept_manager(
+  2  	dept_no character(4),
+  3  	emp_no numeric(6,0).
+  4  	from_date date,
+  5  	to_date,
+  6  	primary key (dept_no,emp-no)
+  7  	);
+	emp_no numeric(6,0).
+	                   *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE dept_manager(
+  2  	dept_no character(4),
+  3  	emp_no numeric(6,0),
+  4  	from_date date,
+  5  	to_date,
+  6  	primary key (dept_no,emp-no)
+  7  	);
+	primary key (dept_no,emp-no)
+	                        *
+ERROR at line 6:
+ORA-00904: : invalid identifier 
+
+
+SQL> CREATE TABLE dept_manager(
+  2  	dept_no character(4),
+  3  	emp_no numeric(6,0),
+  4  	from_date date,
+  5  	to_date,
+  6  	primary key (dept_no,emp_no)
+  7  	);
+	to_date,
+	*
+ERROR at line 5:
+ORA-02263: need to specify the datatype for this column 
+
+
+SQL> CREATE TABLE dept_manager(
+  2  	dept_no character(4),
+  3  	emp_no numeric(6,0),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key (dept_no,emp_no)
+  7  	);
+
+Table created.
+
+SQL> CREATE TABLE dept_emp(
+  2  	emp_no numeric(6,0),
+  3  	dept_no character(4),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key(emp_no,dept_no),
+  7  	);
+	)
+	*
+ERROR at line 7:
+ORA-00904: : invalid identifier 
+
+
+SQL> CREATE TABLE dept_emp(
+  2  	emp_no numeric(6,0),
+  3  	dept_no character(4),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key(emp_no,dept_no)
+  7  	);
+
+Table created.
+
+SQL> CREATE TABLE employees(
+  2  	emp_no numeric(6,0),
+  3  	birth_date date,
+  4  	first_name character varying(4),
+  5  	last_name characyer varying(16),
+  6  	gender character(1),
+  7  	hire_date date,
+  8  	primary key (emp_no),
+  9  	foreign key (emp_no) references titles (emp_no),
+ 10  	foreign key (emp_no) references salaries (emp_no),
+ 11  	foreign key (emp_no) references dept_manager (emp_no),
+ 12  	foreign key (emp_no) references dept_emp (emp_no)
+ 13  	);
+	last_name characyer varying(16),
+	                    *
+ERROR at line 5:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE employees(
+  2  	emp_no numeric(6,0),
+  3  	birth_date date,
+  4  	first_name character varying(4),
+  5  	last_name character varying(16),
+  6  	gender character(1),
+  7  	hire_date date,
+  8  	primary key (emp_no),
+  9  	foreign key (emp_no) references titles (emp_no),
+ 10  	foreign key (emp_no) references salaries (emp_no),
+ 11  	foreign key (emp_no) references dept_manager (emp_no),
+ 12  	foreign key (emp_no) references dept_emp (emp_no)
+ 13  	);
+	foreign key (emp_no) references titles (emp_no),
+	                                        *
+ERROR at line 9:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> CREATE TABLE employees(
+  2  	emp_no numeric(6,0),
+  3  	birth_date date,
+  4  	first_name character varying(4),
+  5  	last_name character varying(16),
+  6  	gender character(1),
+  7  	hire_date date,
+  8  	primary key (emp_no)
+  9  	);
+
+Table created.
+
+SQL> alter table employees add foreign key (emp_no) references titles(emp_no);
+alter table employees add foreign key (emp_no) references titles(emp_no)
+                                                                 *
+ERROR at line 1:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> desc titles;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_NO                                    NOT NULL NUMBER(6)
+ TITLE                                     NOT NULL VARCHAR2(50)
+ FROM_DATE                                 NOT NULL DATE
+ TO_DATE                                            DATE
+
+SQL> CREATE TABLE departments(
+  2  	dept_no character(4),
+  3  	dept_name character varying(40),
+  4  	primary key (dept_no)
+  5  	);
+
+Table created.
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+TITLES                                                                          
+TABLE                                                                           
+                                                                                
+SALARIES                                                                        
+TABLE                                                                           
+                                                                                
+EMPLOYEES                                                                       
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+DEPT_MANAGER                                                                    
+TABLE                                                                           
+                                                                                
+DEPT_EMP                                                                        
+TABLE                                                                           
+                                                                                
+DEPARTMENTS                                                                     
+TABLE                                                                           
+                                                                                
+
+6 rows selected.
+
+SQL> spool off;
+
+SQL> CREATE TABLE departments(
+  2  	dept_no character(4),
+  3  	dept_name character varying(40),
+  4  	primary key (dept_no),
+  5  	foreign key (dept_no) references dept_emp (dept_no),
+  6  	foreign key (dept_no) references dept_manager (dept_no)
+  7  	);
+	foreign key (dept_no) references dept_emp (dept_no),
+	                                           *
+ERROR at line 5:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> CREATE TABLE departments(
+  2  	dept_no character(4),
+  3  	dept_name character varying(40),
+  4  	primary key (dept_no),
+  5  	foreign key (dept_no) references dept_emp (dept_no)
+  6  	);
+	foreign key (dept_no) references dept_emp (dept_no)
+	                                           *
+ERROR at line 5:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> drop table salaries purge;
+
+Table dropped.
+
+SQL> drop table dept_manager purge;
+
+Table dropped.
+
+SQL> drop table dept_emp purge;
+
+Table dropped.
+
+SQL> drop table employees purge;
+drop table employees purge
+           *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+TITLES                                                                          
+TABLE                                                                           
+                                                                                
+
+SQL> drop table titles purge;
+
+Table dropped.
+
+SQL> CREATE TABLE employees(
+  2  	emp_no numeric(6,0),
+  3  	birth_date date,
+  4  	first_name character varying(4),
+  5  	last_name character varying(16),
+  6  	gender character(1),
+  7  	hire_date date,
+  8  	primary key (emp_no)
+  9  	);
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE departments(
+  2  	dept_no character(4),
+  3  	dept_name character varying(40),
+  4  	primary key (dept_no),
+  5  	);
+	)
+	*
+ERROR at line 5:
+ORA-00904: : invalid identifier 
+
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+EMPLOYEES                                                                       
+TABLE                                                                           
+                                                                                
+
+SQL> CREATE TABLE departments(
+  2  	dept_no character(4),
+  3  	dept_name character varying(40),
+  4  	primary key (dept_no)
+  5  	);
+
+Table created.
+
+SQL> CREATE TABLE salaries(
+  2  	emp_no numeric(6,0),
+  3  	salary numeric(6,0),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key (emp_no,from_date),
+  7  	foreign key (dept_no) references departments (dept_no)
+  8  	);
+	foreign key (dept_no) references departments (dept_no)
+	             *
+ERROR at line 7:
+ORA-00904: "DEPT_NO": invalid identifier 
+
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+EMPLOYEES                                                                       
+TABLE                                                                           
+                                                                                
+DEPARTMENTS                                                                     
+TABLE                                                                           
+                                                                                
+
+SQL> drop table employees purge;
+
+Table dropped.
+
+SQL> drop table departments purge;
+
+Table dropped.
+
+SQL> 
+SQL> CREATE TABLE salaries(
+  2  	emp_no numeric(6,0) primary key,
+  3  	salary numeric(6,0),
+  4  	from_date date primary key,
+  5  	to_date date,
+  6  	);
+	from_date date primary key,
+	               *
+ERROR at line 4:
+ORA-02260: table can have only one primary key 
+
+
+SQL> CREATE TABLE salaries(
+  2  	emp_no numeric(6,0),
+  3  	salary numeric(6,0),
+  4  	from_date date,
+  5  	to_date date,
+  6  	);
+	)
+	*
+ERROR at line 6:
+ORA-00904: : invalid identifier 
+
+
+SQL> CREATE TABLE salaries(
+  2  	emp_no numeric(6,0),
+  3  	salary numeric(6,0),
+  4  	from_date date,
+  5  	to_date date
+  6  	);
+
+Table created.
+
+SQL> alter table salaries add primary key(emp_no, title, from_date);
+alter table salaries add primary key(emp_no, title, from_date)
+                                             *
+ERROR at line 1:
+ORA-00904: "TITLE": invalid identifier 
+
+
+SQL> alter table titles add primary key (emp_no,title, from_date);
+alter table titles add primary key (emp_no,title, from_date)
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from table;
+select * from table
+                  *
+ERROR at line 1:
+ORA-00906: missing left parenthesis 
+
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+SALARIES                                                                        
+TABLE                                                                           
+                                                                                
+
+SQL> drop table salaries purge;
+
+Table dropped.
+
+SQL> CREATE TABLE titles(
+  2  	emp_no numeric(6,0),
+  3  	title character varying(50),
+  4  	from_date date,
+  5  	to_date date,
+  6  	);
+	)
+	*
+ERROR at line 6:
+ORA-00904: : invalid identifier 
+
+
+SQL> CREATE TABLE titles(
+  2  	emp_no numeric(6,0),
+  3  	title character varying(50),
+  4  	from_date date,
+  5  	to_date date
+  6  	);
+
+Table created.
+
+SQL> alter table titles add primary key (emp_no,title,from_date);
+
+Table altered.
+
+SQL> desc titles;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_NO                                    NOT NULL NUMBER(6)
+ TITLE                                     NOT NULL VARCHAR2(50)
+ FROM_DATE                                 NOT NULL DATE
+ TO_DATE                                            DATE
+
+SQL> CREATE TABLE employees(
+  2  	emp_no numeric(6,0),
+  3  	birth_date date,
+  4  	first_name character varying(4),
+  5  	last_name character varying(16),
+  6  	gender character(1),
+  7  	hire_date date,
+  8  	primary key (emp_no),
+  9  	foreign key (emp_no) references titles (emp_no)
+ 10  	);
+	foreign key (emp_no) references titles (emp_no)
+	                                        *
+ERROR at line 9:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> CREATE TABLE employees(
+  2  	emp_no numeric(6,0),
+  3  	birth_date date,
+  4  	first_name character varying(4),
+  5  	last_name character varying(16),
+  6  	gender character(1),
+  7  	hire_date date,
+  8  	primary key (emp_no)
+  9  	);
+
+Table created.
+
+SQL> alter table employess add foreign key (emp_no) references titles (emp_no);
+alter table employess add foreign key (emp_no) references titles (emp_no)
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+TITLES                                                                          
+TABLE                                                                           
+                                                                                
+EMPLOYEES                                                                       
+TABLE                                                                           
+                                                                                
+
+SQL> alter table employees add foreign key (emp_no) references titles (emp_no);
+alter table employees add foreign key (emp_no) references titles (emp_no)
+                                                                  *
+ERROR at line 1:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> alter table titles add foreign key (emp_no) references employees (emp_no);
+
+Table altered.
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+TITLES                                                                          
+TABLE                                                                           
+                                                                                
+EMPLOYEES                                                                       
+TABLE                                                                           
+                                                                                
+
+SQL> drop table titles purge;
+
+Table dropped.
+
+SQL> drop table employees purge;
+
+Table dropped.
+
+SQL> CREATE TABLE titles(
+  2  	emp_no numeric(6,0),
+  3  	title character varying(50),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key (emp_no,title,from_date)
+  7  	);
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE salaries(
+  2  	emp_no numeric(6,0),
+  3  	salary numeric(6,0),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key (emp_no,from_date)
+  7  	);
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE dept_manager(
+  2  	dept_no character(4),
+  3  	emp_no numeric(6,0),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key (dept_no,emp_no)
+  7  	);
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE dept_emp(
+  2  	emp_no numeric(6,0),
+  3  	dept_no character(4),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key(emp_no,dept_no)
+  7  	);
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE employees(
+  2  	emp_no numeric(6,0),
+  3  	birth_date date,
+  4  	first_name character varying(4),
+  5  	last_name character varying(16),
+  6  	gender character(1),
+  7  	hire_date date,
+  8  	primary key (emp_no)
+  9  	);
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE departments(
+  2  	dept_no character(4),
+  3  	dept_name character varying(40),
+  4  	primary key (dept_no)
+  5  	);
+
+Table created.
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+TITLES                                                                          
+TABLE                                                                           
+                                                                                
+SALARIES                                                                        
+TABLE                                                                           
+                                                                                
+EMPLOYEES                                                                       
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+DEPT_MANAGER                                                                    
+TABLE                                                                           
+                                                                                
+DEPT_EMP                                                                        
+TABLE                                                                           
+                                                                                
+DEPARTMENTS                                                                     
+TABLE                                                                           
+                                                                                
+
+6 rows selected.
+
+SQL> alter table titles add foreign key (emp_no) references titles (emp_no);
+alter table titles add foreign key (emp_no) references titles (emp_no)
+                                                               *
+ERROR at line 1:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> delete all tables;
+delete all tables
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> drop table * purge;
+drop table * purge
+           *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> drop table [titles + salaries];
+drop table [titles + salaries]
+           *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> alter table employees foreign key (emp_no) references titles (emp_no);
+alter table employees foreign key (emp_no) references titles (emp_no)
+                      *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> alter table employees add foreign key (emp_no) references titles (emp_no);
+alter table employees add foreign key (emp_no) references titles (emp_no)
+                                                                  *
+ERROR at line 1:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> alter table titles add primary key (emp_no,title,from_date);
+alter table titles add primary key (emp_no,title,from_date)
+                       *
+ERROR at line 1:
+ORA-02260: table can have only one primary key 
+
+
+SQL> alter table titles add composite primary key (title,from_date);
+alter table titles add composite primary key (title,from_date)
+                                              *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> drop table titles purge;
+
+Table dropped.
+
+SQL> drop table titles purge;
+drop table titles purge
+           *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> drop table salaries purge;
+
+Table dropped.
+
+SQL> drop table dept_manager purge;
+
+Table dropped.
+
+SQL> drop table dept_emp purge;
+
+Table dropped.
+
+SQL> drop table employees purge;
+
+Table dropped.
+
+SQL> drop table departments purge;select * from tab;
+drop table departments purge;select * from tab
+                            *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+DEPARTMENTS                                                                     
+TABLE                                                                           
+                                                                                
+
+SQL> drop table departments purge;
+
+Table dropped.
+
+SQL> select * from tab;
+
+no rows selected
+
+SQL> CREATE TABLE titles(
+  2  	emp_no numeric(6,0),
+  3  	title character varying(50),
+  4  	from_date date,
+  5  	to_date date);
+
+Table created.
+
+SQL> alter table titles add primary key (emp_no,title,from_date);
+
+Table altered.
+
+SQL> CREATE TABLE salaries(
+  2  	emp_no numeric(6,0),
+  3  	salary numeric(6,0),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key (emp_no,from_date)
+  7  	);
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE dept_manager(
+  2  	dept_no character(4),
+  3  	emp_no numeric(6,0),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key (dept_no,emp_no)
+  7  	);
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE dept_emp(
+  2  	emp_no numeric(6,0),
+  3  	dept_no character(4),
+  4  	from_date date,
+  5  	to_date date,
+  6  	primary key(emp_no,dept_no)
+  7  	);
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE employees(
+  2  	emp_no numeric(6,0),
+  3  	birth_date date,
+  4  	first_name character varying(4),
+  5  	last_name character varying(16),
+  6  	gender character(1),
+  7  	hire_date date,
+  8  	primary key (emp_no)
+  9  	);
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE departments(
+  2  	dept_no character(4),
+  3  	dept_name character varying(40),
+  4  	primary key (dept_no)
+  5  	);
+
+Table created.
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+TITLES                                                                          
+TABLE                                                                           
+                                                                                
+SALARIES                                                                        
+TABLE                                                                           
+                                                                                
+EMPLOYEES                                                                       
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+DEPT_MANAGER                                                                    
+TABLE                                                                           
+                                                                                
+DEPT_EMP                                                                        
+TABLE                                                                           
+                                                                                
+DEPARTMENTS                                                                     
+TABLE                                                                           
+                                                                                
+
+6 rows selected.
+
+SQL> 	alter table salaries add foreign key (emp_no) references employees (emp_no);
+
+Table altered.
+
+SQL> alter table titles add foreign key (emp_no) references employees (emp_no);
+
+Table altered.
+
+SQL> 	alter table dept_manager add foreign key (dept_no) references departments (dept_no);
+
+Table altered.
+
+SQL> alter table dept_manager add foreign key (emp_no) references employees (emp_no);
+
+Table altered.
+
+SQL> 	alter dept_emp add foreign key (emp_no) references employees (emp_no);
+	alter dept_emp add foreign key (emp_no) references employees (emp_no)
+	      *
+ERROR at line 1:
+ORA-00940: invalid ALTER command 
+
+
+SQL> 	alter table dept_emp add foreign key (emp_no) references employees (emp_no);
+
+Table altered.
+
+SQL> alter table dept_emp add foreign key (dept_no) references departments (dept_no);
+
+Table altered.
+
+SQL> SELECT E.first_name, E.last_name
+  2  FROM titles T, employees E
+  3  WHERE T.emp_no = E.emp_no
+  4  AND T.title = 'manager';
+
+no rows selected
+
+SQL> SELECT E.first_name, E.last_name
+  2  FROM salaries S, employees E
+  3  WHERE S.emp_no = E.emp_no
+  4  AND S.salary < 39,000;
+AND S.salary < 39,000
+                 *
+ERROR at line 4:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT E.first_name, E.last_name
+  2  FROM salaries S, employees E
+  3  WHERE S.emp_no = E.emp_no
+  4  AND S.salary < 39000;
+
+no rows selected
+
+SQL> SELECT E.first_name, E.last_name
+  2  FROM employees E, dept_manager M, departments D
+  3  WHERE E.emp_no = M.emp_no
+  4  AND M.dept_no = D.dept_no
+  5  OR D.dept_name = 'Research'
+  6  OR D.dept_name = 'Finance';
+
+no rows selected
+
+SQL> SELECT E.first_name, E.last_name
+  2  FROM salaries S, employees E, dept_manager M, departments D
+  3  WHERE E.emp_no = M.emp_no AND M.dept_no = D.dept_no AND S.emp_no = E.emp_no
+  4  AND S.salary < 65000
+  5  AND Ddept_name = 'Finance';
+AND Ddept_name = 'Finance'
+    *
+ERROR at line 5:
+ORA-00904: "DDEPT_NAME": invalid identifier 
+
+
+SQL> SELECT E.first_name, E.last_name
+  2  FROM salaries S, employees E, dept_manager M, departments D
+  3  WHERE E.emp_no = M.emp_no AND M.dept_no = D.dept_no AND S.emp_no = E.emp_no
+  4  AND S.salary < 65000
+  5  AND Dept_name = 'Finance';
+
+no rows selected
+
+SQL> SELECT E.emp_no
+  2  FROM employees E, dept_manager M, departments D
+  3  WHERE E.emp_no = M.emp_no AND M.dept_no = D.dept_no
+  4  AND Dept_name = 'Research'
+  5  AND Dept_name = 'Finance';
+
+no rows selected
+
+SQL> spool off

@@ -1,0 +1,35 @@
+/#1
+SELECT T.emp_no
+FROM titles T, employees E, dept_emp M, departments D
+WHERE T.emp_no = E.emp_no AND M.emp_no = E.emp_no AND M.dept_no = M.dept_no
+AND D.dept_name = 'Research' AND T.title = 'Manager';
+
+#2 // This one is the right answer
+SELECT D.dept_name
+FROM employees E, dept_emp M, departments D
+WHERE E.emp_no = M.emp_no AND M.dept_no = D.dept_no
+AND E.first_name = 'Laurentiu' AND E.last_name = 'Cesareni'
+MINUS
+SELECT D.dept_name
+FROM employees E, dept_emp M, departments D
+WHERE E.emp_no = M.emp_no AND M.dept_no = D.dept_no
+AND D.dept_name = 'Research' OR D.dept_name = 'Development';
+
+#3
+SELECT first_name E
+FROM employees E, dept_emp M, departments D
+WHERE E.emp_no = M.emp_no AND M.dept_no = D.dept_no
+AND D.dept_name = 'Sales';
+
+#4 
+SELECT  E.emp_no
+FROM employees E, dept_emp M, departments D
+WHERE E.emp_no = M.emp_no AND M.dept_no = D.dept_no
+GROUP BY E.emp_no
+HAVING count(*) > 1;
+
+#5 
+SELECT E.first_name
+FROM employees E, dept_emp M, departments D, salaries S;
+WHERE S.emp_no = E.emp_no AND E.emp_no = M.emp_no AND M.dept_no = S.dept_no
+ORDER BY S.salaries DESC;
